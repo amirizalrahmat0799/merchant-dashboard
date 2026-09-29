@@ -1,7 +1,7 @@
 # Serves the built dashboard and proxies API calls to the gateway services,
 # so the browser only ever talks to one origin (no CORS needed).
 server {
-    listen 80;
+    listen 8080;
     root /usr/share/nginx/html;
 
     location /merchant-api/   { proxy_pass ${MERCHANT_SERVICE_URL}/; }

@@ -1,0 +1,22 @@
+# Serves the built dashboard and proxies API calls to the gateway services,
+# so the browser only ever talks to one origin (no CORS needed).
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+
+    location /merchant-api/   { proxy_pass ${MERCHANT_SERVICE_URL}/; }
+    location /payment-api/    { proxy_pass ${PAYMENT_SERVICE_URL}/; }
+    location /token-api/      { proxy_pass ${TOKEN_SERVICE_URL}/; }
+    location /settlement-api/ { proxy_pass ${SETTLEMENT_SERVICE_URL}/; }
+
+    # Long-lived caching for fingerprinted assets, none for the HTML shell.
+    location /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    # Client-side routing: unknown paths fall back to index.html.
+    location / {
+        add_header Cache-Control "no-cache";
+        try_files $uri $uri/ /index.html;
+    }
+}

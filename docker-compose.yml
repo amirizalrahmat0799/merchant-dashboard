@@ -1,0 +1,16 @@
+# Runs the dashboard next to the payment-gateway-sim stack.
+# Start the gateway first (from its repo):  docker compose up -d
+# Then from this repo:                      docker compose up --build
+# Open http://localhost:3000
+services:
+  dashboard:
+    build: .
+    ports:
+      - "3000:80"
+    networks:
+      - gateway
+
+networks:
+  gateway:
+    name: payment-gateway-sim_default
+    external: true

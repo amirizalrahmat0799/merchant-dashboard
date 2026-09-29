@@ -8,6 +8,8 @@ server {
     location /payment-api/    { proxy_pass ${PAYMENT_SERVICE_URL}/; }
     location /token-api/      { proxy_pass ${TOKEN_SERVICE_URL}/; }
     location /settlement-api/ { proxy_pass ${SETTLEMENT_SERVICE_URL}/; }
+    # Model calls can take a while, especially on local models.
+    location /assistant-api/  { proxy_pass ${ASSISTANT_SERVICE_URL}/; proxy_read_timeout 120s; }
 
     # Long-lived caching for fingerprinted assets, none for the HTML shell.
     location /assets/ {

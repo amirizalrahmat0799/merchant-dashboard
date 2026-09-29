@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { CreditCard, Landmark, LayoutDashboard, LogOut, Menu, Plus, Settings, X } from 'lucide-react'
+import { Bot, CreditCard, Landmark, LayoutDashboard, LogOut, Menu, Plus, Settings, X } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router'
 import { useAuth, useSession } from '@/lib/auth-context'
@@ -11,6 +11,7 @@ const NAV = [
   { to: '/payments', label: 'Payments', icon: CreditCard },
   { to: '/payments/new', label: 'New payment', icon: Plus },
   { to: '/settlements', label: 'Settlements', icon: Landmark },
+  { to: '/assistant', label: 'Assistant', icon: Bot },
   { to: '/settings', label: 'Settings', icon: Settings },
 ]
 

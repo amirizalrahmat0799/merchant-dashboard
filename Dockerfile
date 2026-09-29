@@ -14,4 +14,7 @@ ENV MERCHANT_SERVICE_URL=http://merchant-service:8081 \
     PAYMENT_SERVICE_URL=http://payment-service:8082 \
     TOKEN_SERVICE_URL=http://tokenization-service:8083 \
     SETTLEMENT_SERVICE_URL=http://settlement-service:8084
+# The assistant is optional: by default it points nowhere and the Assistant page shows "unavailable".
+# Set it to e.g. http://assistant:8085 when payment-assistant is running.
+ENV ASSISTANT_SERVICE_URL=http://127.0.0.1:9
 EXPOSE 8080

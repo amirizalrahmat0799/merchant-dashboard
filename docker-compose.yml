@@ -5,6 +5,8 @@
 services:
   dashboard:
     build: .
+    # environment:
+    #   ASSISTANT_SERVICE_URL: http://assistant:8085   # enable when payment-assistant is running
     ports:
       - "3000:8080"
     networks:

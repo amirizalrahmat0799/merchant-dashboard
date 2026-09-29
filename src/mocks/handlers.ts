@@ -1,5 +1,6 @@
 import { delay, http, HttpResponse, type HttpResponseResolver } from 'msw'
 import * as ops from './db'
+import { assistantReply } from './assistant'
 import { createDb, MockError, type Db } from './db'
 
 /** Handlers mirror the real endpoints; `*` matches any base path (e.g. GitHub Pages sub-path). */
@@ -109,6 +110,19 @@ export function createHandlers(db: Db = createDb(), latencyMs = 250) {
     http.post('*/settlement-api/api/v1/settlements/run', route(({ request }) => {
       const date = new URL(request.url).searchParams.get('date') ?? ''
       return HttpResponse.json(ops.runSettlement(db, date))
+    })),
+
+    // ---------------- payment-assistant (scripted stand-in for the Spring AI service) ----------------
+    http.post('*/assistant-api/api/v1/assistant/chat', route(async ({ request }) => {
+      const m = ops.authenticate(db, apiKey(request))
+      const body = (await request.json()) as { message?: string; conversationId?: string }
+      if (!body.message?.trim()) throw new MockError(400, 'message must not be blank')
+      return HttpResponse.json(assistantReply(db, m, body.message, body.conversationId))
+    })),
+
+    http.delete('*/assistant-api/api/v1/assistant/conversations/:id', route(({ request }) => {
+      ops.authenticate(db, apiKey(request))
+      return new HttpResponse(null, { status: 204 })
     })),
   ]
 }

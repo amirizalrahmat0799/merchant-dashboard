@@ -102,3 +102,12 @@ export interface ProblemDetail {
   status: number
   detail?: string
 }
+
+/** Reply from payment-assistant (Spring AI). */
+export interface AssistantReply {
+  conversationId: string
+  reply: string
+  sources: { title: string; section: string }[]
+  toolsUsed: string[]
+  totalTokens: number | null
+}

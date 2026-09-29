@@ -118,3 +118,32 @@ describe('settlements', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent(/already completed/i)
   })
 })
+
+describe('assistant', () => {
+  it('answers a payout question with tools and sources', async () => {
+    const { user } = renderApp('/assistant')
+    await user.click(await screen.findByRole('button', { name: /how much money is waiting to be paid out/i }))
+
+    expect(await screen.findByText(/waiting to be paid out, from/i)).toBeInTheDocument()
+    expect(screen.getByText(/checked pending payout/i)).toBeInTheDocument()
+    expect(screen.getByText(/fees and settlement: settlement timing/i)).toBeInTheDocument()
+  })
+
+  it('keeps the conversation going and can start over', async () => {
+    const { user } = renderApp('/assistant')
+    await user.type(await screen.findByLabelText(/message/i), 'Refund my last payment')
+    await user.click(screen.getByRole('button', { name: /send/i }))
+    expect(await screen.findByText(/can't issue refunds myself/i)).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: /new conversation/i }))
+    expect(screen.queryByText(/can't issue refunds myself/i)).not.toBeInTheDocument()
+  })
+
+  it('explains when the assistant service is unavailable', async () => {
+    server.use(http.post('*/assistant-api/api/v1/assistant/chat', () => HttpResponse.json({ status: 502 }, { status: 502 })))
+    const { user } = renderApp('/assistant')
+    await user.type(await screen.findByLabelText(/message/i), 'hello')
+    await user.click(screen.getByRole('button', { name: /send/i }))
+    expect(await screen.findByRole('alert')).toHaveTextContent(/assistant is unavailable/i)
+  })
+})

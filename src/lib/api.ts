@@ -5,6 +5,7 @@ import type {
   Page,
   Payment,
   ProblemDetail,
+  AssistantReply,
   Refund,
   Settlement,
   SettlementRun,
@@ -17,6 +18,7 @@ export const SERVICES = {
   payment: `${base}/payment-api`,
   token: `${base}/token-api`,
   settlement: `${base}/settlement-api`,
+  assistant: `${base}/assistant-api`,
 } as const
 
 export class ApiError extends Error {
@@ -32,7 +34,7 @@ export class ApiError extends Error {
 }
 
 interface RequestOptions {
-  method?: 'GET' | 'POST' | 'PATCH'
+  method?: 'GET' | 'POST' | 'PATCH' | 'DELETE'
   apiKey?: string
   idempotencyKey?: string
   body?: unknown
@@ -126,4 +128,17 @@ export const settlementApi = {
 
   run: (date: string) =>
     request<SettlementRun>(`${SERVICES.settlement}/api/v1/settlements/run?date=${date}`, { method: 'POST' }),
+}
+
+// ---------- payment-assistant ----------
+export const assistantApi = {
+  chat: (apiKey: string, message: string, conversationId?: string) =>
+    request<AssistantReply>(`${SERVICES.assistant}/api/v1/assistant/chat`, {
+      method: 'POST',
+      apiKey,
+      body: conversationId ? { message, conversationId } : { message },
+    }),
+
+  forget: (apiKey: string, conversationId: string) =>
+    request<void>(`${SERVICES.assistant}/api/v1/assistant/conversations/${conversationId}`, { method: 'DELETE', apiKey }),
 }

@@ -22,6 +22,7 @@ the whole gateway in your browser, so no backend is needed.
 | **Payments** | Paged table with status filters. The detail view offers only the actions valid for the current state: capture (full or partial), void, or refund |
 | **New payment** | A virtual terminal: tokenizes the card first, then charges the token with an idempotency key |
 | **Settlements** | Pending payout, the ledger, settlement history, and a button to trigger the Spring Batch settlement job |
+| **Assistant** | Chat with the [AI support assistant](https://github.com/amirizalrahmat0799/payment-assistant) (Spring AI + Amazon Bedrock): answers about the merchant's own payments and payouts, with the tools it used and its documentation sources shown under each reply. In the demo, answers are scripted from the demo data |
 | **Settings** | Account details and API key rotation (the new key is shown once) |
 
 Plus: sign-up for a sandbox merchant, dark and light themes, a responsive layout, and keyboard-accessible dialogs.
@@ -67,7 +68,7 @@ Start [payment-gateway-sim](https://github.com/amirizalrahmat0799/payment-gatewa
 npm run dev          # http://localhost:5173
 ```
 
-Vite proxies `/merchant-api`, `/payment-api`, `/token-api` and `/settlement-api` to ports 8081–8084, so the browser only
+Vite proxies `/merchant-api`, `/payment-api`, `/token-api`, `/settlement-api` and `/assistant-api` to ports 8081–8085, so the browser only
 talks to one origin and the Spring Boot services need no CORS configuration. Create a sandbox merchant from the login page.
 
 ### Without a backend
@@ -84,7 +85,8 @@ With the gateway running in Docker:
 docker compose up --build   # http://localhost:3000
 ```
 
-nginx serves the build and proxies the four API prefixes to the gateway containers on the shared Docker network.
+nginx serves the build and proxies the API prefixes to the gateway containers on the shared Docker network.
+The assistant is optional: set `ASSISTANT_SERVICE_URL` (see `docker-compose.yml`) when payment-assistant is running.
 
 ## Scripts
 

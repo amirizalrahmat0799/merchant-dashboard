@@ -14,6 +14,7 @@ const OverviewPage = lazy(() => import('@/pages/OverviewPage').then((m) => ({ de
 const PaymentsPage = lazy(() => import('@/pages/PaymentsPage').then((m) => ({ default: m.PaymentsPage })))
 const NewPaymentPage = lazy(() => import('@/pages/NewPaymentPage').then((m) => ({ default: m.NewPaymentPage })))
 const SettlementsPage = lazy(() => import('@/pages/SettlementsPage').then((m) => ({ default: m.SettlementsPage })))
+const AssistantPage = lazy(() => import('@/pages/AssistantPage').then((m) => ({ default: m.AssistantPage })))
 const SettingsPage = lazy(() => import('@/pages/SettingsPage').then((m) => ({ default: m.SettingsPage })))
 
 const page = (node: ReactNode) => (
@@ -55,6 +56,7 @@ export const routes: RouteObject[] = [
           { path: 'payments', element: page(<PaymentsPage />) },
           { path: 'payments/new', element: page(<NewPaymentPage />) },
           { path: 'settlements', element: page(<SettlementsPage />) },
+          { path: 'assistant', element: page(<AssistantPage />) },
           { path: 'settings', element: page(<SettingsPage />) },
           { path: '*', element: <NotFound /> },
         ],

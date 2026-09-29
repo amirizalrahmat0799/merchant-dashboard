@@ -34,6 +34,7 @@ export default defineConfig(({ mode }) => {
         '/payment-api': proxy(8082),
         '/token-api': proxy(8083),
         '/settlement-api': proxy(8084),
+        '/assistant-api': proxy(8085),
       },
     },
     test: {

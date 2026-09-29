@@ -4,36 +4,38 @@
 
 /* Semantic colour tokens, swapped wholesale for dark mode. */
 :root {
-  --bg: #f6f8fa;
+  --bg: #f5f7fb;
   --surface: #ffffff;
   --surface-2: #f1f4f8;
   --line: #e3e8ef;
   --fg: #0f172a;
   --muted: #5b6b80;
-  --accent: #059669;
-  --accent-strong: #047857;
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
   --accent-fg: #ffffff;
-  --accent-soft: rgb(5 150 105 / 0.10);
+  --accent-soft: rgb(37 99 235 / 0.10);
+  --success: #059669;
   --danger: #dc2626;
   --warn: #b45309;
-  --info: #2563eb;
+  --info: #7c3aed;
   color-scheme: light;
 }
 
 .dark {
-  --bg: #0b0f14;
-  --surface: #111821;
-  --surface-2: #16202b;
-  --line: #223142;
+  --bg: #0a0e1a;
+  --surface: #0f1629;
+  --surface-2: #152036;
+  --line: #22304d;
   --fg: #e6edf3;
   --muted: #93a3b8;
-  --accent: #34d399;
-  --accent-strong: #10b981;
-  --accent-fg: #04130d;
-  --accent-soft: rgb(52 211 153 / 0.12);
+  --accent: #60a5fa;
+  --accent-strong: #3b82f6;
+  --accent-fg: #06142b;
+  --accent-soft: rgb(96 165 250 / 0.14);
+  --success: #34d399;
   --danger: #f87171;
   --warn: #fbbf24;
-  --info: #60a5fa;
+  --info: #a78bfa;
   color-scheme: dark;
 }
 
@@ -48,6 +50,7 @@
   --color-accent-strong: var(--accent-strong);
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
   --color-danger: var(--danger);
   --color-warn: var(--warn);
   --color-info: var(--info);

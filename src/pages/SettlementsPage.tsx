@@ -56,7 +56,7 @@ export function SettlementsPage() {
           <div className="mt-3" aria-live="polite">
             {run.error && <ErrorBanner error={run.error} />}
             {run.data && (
-              <p className="text-sm text-accent">
+              <p className="text-sm text-success">
                 Settlement for {run.data.settlementDate} finished: {run.data.status.toLowerCase()}.
               </p>
             )}
@@ -130,7 +130,7 @@ export function SettlementsPage() {
                 <tr key={e.id}>
                   <td className="td whitespace-nowrap text-muted">{formatDateTime(e.occurredAt)}</td>
                   <td className="td">
-                    <span className={e.entryType === 'CAPTURE' ? 'text-accent' : 'text-warn'}>{e.entryType.toLowerCase()}</span>
+                    <span className={e.entryType === 'CAPTURE' ? 'text-success' : 'text-warn'}>{e.entryType.toLowerCase()}</span>
                   </td>
                   <td className="td font-mono text-xs text-muted">{e.paymentId.slice(0, 8)}</td>
                   <td className="td text-right font-mono">

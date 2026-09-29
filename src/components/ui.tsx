@@ -21,7 +21,7 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
 
 const STATUS_STYLES: Record<PaymentStatus, string> = {
   AUTHORIZED: 'bg-info/10 text-info',
-  CAPTURED: 'bg-accent-soft text-accent',
+  CAPTURED: 'bg-success/10 text-success',
   PARTIALLY_REFUNDED: 'bg-warn/10 text-warn',
   REFUNDED: 'bg-warn/10 text-warn',
   VOIDED: 'bg-surface-2 text-muted',
@@ -80,7 +80,7 @@ export function CopyButton({ value, label = 'Copy' }: { value: string; label?: s
         })
       }}
     >
-      {copied ? <Check className="size-4 text-accent" /> : <Copy className="size-4" />}
+      {copied ? <Check className="size-4 text-success" /> : <Copy className="size-4" />}
     </button>
   )
 }

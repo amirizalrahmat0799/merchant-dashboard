@@ -95,7 +95,7 @@ export function NewPaymentPage() {
         <PageHeader title="New payment" />
         <div className="card mx-auto max-w-lg p-8 text-center">
           {approved ? (
-            <CircleCheck className="mx-auto mb-3 size-12 text-accent" aria-hidden />
+            <CircleCheck className="mx-auto mb-3 size-12 text-success" aria-hidden />
           ) : (
             <CircleX className="mx-auto mb-3 size-12 text-danger" aria-hidden />
           )}

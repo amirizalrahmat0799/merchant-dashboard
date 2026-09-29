@@ -98,7 +98,7 @@ export function Layout() {
 
       <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-8">
         {DEMO_MODE && (
-          <p className="mb-6 rounded-lg border border-info/30 bg-info/5 px-4 py-2.5 text-sm text-fg">
+          <p className="mb-6 rounded-lg border border-accent/30 bg-accent-soft px-4 py-2.5 text-sm text-fg">
             You're viewing a <strong>demo</strong>: the gateway is simulated in your browser, so data resets when you reload.
           </p>
         )}

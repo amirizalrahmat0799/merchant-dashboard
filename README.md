@@ -1,6 +1,6 @@
 # Merchant Dashboard
 
-![CI](https://github.com/amirizalrahmat0799/merchant-dashboard/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/amirizalrahmat0799/merchant-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/amirizalrahmat0799/merchant-dashboard/actions/workflows/ci.yml)
 ![React](https://img.shields.io/badge/React-19-61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8)
@@ -90,7 +90,7 @@ The assistant is optional: set `ASSISTANT_SERVICE_URL` (see `docker-compose.yml`
 
 ## Scripts
 
-| Command | |
+| Command | What it does |
 |---|---|
 | `npm run dev` / `dev:demo` | Dev server against the real / simulated gateway |
 | `npm test` | Unit and page tests (Vitest + Testing Library + MSW) |
